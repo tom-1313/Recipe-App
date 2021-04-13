@@ -1,5 +1,11 @@
 package edu.quinnipiac.gadacy.recipeapp;
+/**
+ Thomas Gadacy & Sadjell Mamon
+ Professor Ruby ElKharboutly
+ Recipe App Iteration 1
+ **/
 
+//This class holds information about a recipe
 public class Recipe {
     private String recipe, ingredients, instructions;
 

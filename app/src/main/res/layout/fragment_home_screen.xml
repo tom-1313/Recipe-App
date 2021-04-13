@@ -28,6 +28,7 @@
         android:layout_marginEnd="31dp"
         android:layout_marginBottom="22dp"
         android:src="@drawable/ingred"
+        android:onClick="onClick"
         app:layout_constraintBottom_toTopOf="@+id/find_recipe"
         app:layout_constraintEnd_toStartOf="@+id/add_recipe_image"
         app:layout_constraintStart_toStartOf="parent"

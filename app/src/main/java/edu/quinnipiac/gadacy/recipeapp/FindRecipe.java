@@ -1,4 +1,9 @@
 package edu.quinnipiac.gadacy.recipeapp;
+/**
+Thomas Gadacy & Sadjell Mamon
+ Professor Ruby ElKharboutly
+ Recipe App Iteration 1
+ **/
 
 import android.os.Bundle;
 
@@ -17,6 +22,7 @@ import android.view.ViewGroup;
 import java.util.LinkedList;
 import java.util.List;
 
+//This class is where a list of recipes is displayed in a recycleview for the user
 public class FindRecipe extends Fragment {
     private RecyclerView mRecycleView;
     private LinkedList<String> mRecipeList = new LinkedList<>();

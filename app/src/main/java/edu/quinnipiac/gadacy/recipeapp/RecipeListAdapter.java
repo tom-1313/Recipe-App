@@ -1,26 +1,36 @@
 package edu.quinnipiac.gadacy.recipeapp;
+/**
+ Thomas Gadacy & Sadjell Mamon
+ Professor Ruby ElKharboutly
+ Recipe App Iteration 1
+ **/
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
 
+//This class is where the adapter for the recycleview is created
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeViewHolder> {
 
     private final LayoutInflater mInflater;
     private final LinkedList<String> mRecipeList;
     private Context context;
+    private Activity activity;
 
     public RecipeListAdapter(LinkedList<String> mRecipeList, Context context) {
         this.mInflater = LayoutInflater.from(context);
         this.mRecipeList = mRecipeList;
         this.context = context;
+        this.activity = (Activity) context;
     }
 
     @NonNull
@@ -57,6 +67,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             int mPosition = getLayoutPosition();
             String element = mRecipeList.get(mPosition);
             //navigate to RecipeDetails
+            Toast.makeText(activity, "Recipe Details", Toast.LENGTH_SHORT).show();
         }
     }
 }

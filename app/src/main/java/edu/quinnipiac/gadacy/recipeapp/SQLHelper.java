@@ -1,9 +1,15 @@
 package edu.quinnipiac.gadacy.recipeapp;
+/**
+ Thomas Gadacy & Sadjell Mamon
+ Professor Ruby ElKharboutly
+ Recipe App Iteration 1
+ **/
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+//This class creates the database with two tables.
 public class SQLHelper extends SQLiteOpenHelper {
     public static final String TABLE_INGREDIENT = "ingredient";
     public static final String COLUMN_NAME = "name";

@@ -1,4 +1,9 @@
 package edu.quinnipiac.gadacy.recipeapp;
+/**
+ Thomas Gadacy & Sadjell Mamon
+ Professor Ruby ElKharboutly
+ Recipe App Iteration 1
+ **/
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,6 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+//This class allows access to the database to modify and retrieve data from it.
 public class RecipeDataSource {
 
     private SQLiteDatabase database;

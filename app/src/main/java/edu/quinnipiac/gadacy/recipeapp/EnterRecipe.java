@@ -1,4 +1,9 @@
 package edu.quinnipiac.gadacy.recipeapp;
+/**
+ Thomas Gadacy & Sadjell Mamon
+ Professor Ruby ElKharboutly
+ Recipe App Iteration 1
+ **/
 
 import android.os.Bundle;
 
@@ -16,7 +21,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class EnterRecipe extends Fragment implements View.OnClickListener{
+//This fragment displays the enter EnterRecipe screen
+public class EnterRecipe extends Fragment implements View.OnClickListener {
     NavController navController = null;
     private RecipeDataSource dataSource;
     private EditText name, ingredients, instructions;
@@ -24,8 +30,11 @@ public class EnterRecipe extends Fragment implements View.OnClickListener{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         navController = Navigation.findNavController(view);
+
         view.findViewById(R.id.add_recipe_button).setOnClickListener(this);
+
         name = view.findViewById(R.id.recipe_name);
         ingredients = view.findViewById(R.id.recipe_ingredients);
         instructions = view.findViewById(R.id.recipe_instructions);
@@ -44,9 +53,9 @@ public class EnterRecipe extends Fragment implements View.OnClickListener{
         dataSource = new RecipeDataSource(getActivity());
         dataSource.open();
         dataSource.createRecipe(name.getText().toString(), ingredients.getText().toString(), instructions.getText().toString());
-        //TODO: this toast does not appear because it is lost on navigation
-        Toast.makeText(getActivity(), "Recipe Added!", Toast.LENGTH_SHORT).show();
         dataSource.close();
+
+        Toast.makeText(getActivity(), "Recipe Added!", Toast.LENGTH_SHORT).show();
         navController.navigate(R.id.action_enterRecipe_to_homeScreen);
     }
 }
