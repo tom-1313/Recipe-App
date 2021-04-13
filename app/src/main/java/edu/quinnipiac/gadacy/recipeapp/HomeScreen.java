@@ -43,7 +43,6 @@ public class HomeScreen extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        //navigate to add recipe
         switch (v.getId()) {
             case R.id.add_recipe_image:
                 navController.navigate(R.id.action_homeScreen_to_enterRecipe2);

@@ -63,7 +63,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "This is the share button in navigation!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_settings:
+                //TODO: navigate to the settings screen
                 Toast.makeText(this, "This is the setting button in navigation!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_about:
+                //TODO: navigate to the about screen
+                Toast.makeText(this, "This is the about button!", Toast.LENGTH_SHORT).show();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
