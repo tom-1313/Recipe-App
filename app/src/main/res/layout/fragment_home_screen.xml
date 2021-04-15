@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeScreen">
+
+
+    <TextView
+        android:id="@+id/welcome_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="66dp"
+        android:layout_marginBottom="26dp"
+        android:gravity="center"
+        android:text="Welcome to the Recipe App! \nPlease choose an option below!"
+        app:layout_constraintBottom_toTopOf="@+id/add_ingredient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/add_ingredient_image"
+        android:layout_width="168dp"
+        android:layout_height="240dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="22dp"
+        android:src="@drawable/ingred"
+        android:onClick="onClick"
+        app:layout_constraintBottom_toTopOf="@+id/find_recipe"
+        app:layout_constraintEnd_toStartOf="@+id/add_recipe_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_ingredient" />
+
+    <ImageView
+        android:id="@+id/add_recipe_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="176dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="84dp"
+        android:src="@drawable/recipe"
+        android:onClick="onClick"
+        app:layout_constraintBottom_toTopOf="@+id/find_recipe_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_ingredient_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/find_recipe_image"
+        android:layout_width="334dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="51dp"
+        android:src="@drawable/findrecipe"
+        android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_recipe_image" />
+
+    <TextView
+        android:id="@+id/add_ingredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="9dp"
+        android:text="Add Ingredient"
+        app:layout_constraintBottom_toTopOf="@+id/add_ingredient_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_textView" />
+
+    <TextView
+        android:id="@+id/add_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="68dp"
+        android:text="Add Recipe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/add_ingredient" />
+
+    <TextView
+        android:id="@+id/find_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="21dp"
+        android:text="Find a Recipe"
+        app:layout_constraintBottom_toTopOf="@+id/find_recipe_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_ingredient_image" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeScreen">
+
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="edu.quinnipiac.gadacy.recipeapp.HomeScreen"
+        android:label="Home"
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreen_to_enterRecipe2"
+            app:destination="@id/enterRecipe" />
+        <action
+            android:id="@+id/action_homeScreen_to_findRecipe"
+            app:destination="@id/findRecipe" />
+    </fragment>
+    <fragment
+        android:id="@+id/enterRecipe"
+        android:name="edu.quinnipiac.gadacy.recipeapp.EnterRecipe"
+        android:label="Add Recipe"
+        tools:layout="@layout/fragment_enter_recipe" >
+        <action
+            android:id="@+id/action_enterRecipe_to_homeScreen"
+            app:destination="@id/homeScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/findRecipe"
+        android:name="edu.quinnipiac.gadacy.recipeapp.FindRecipe"
+        android:label="Find Recipe"
+        tools:layout="@layout/fragment_find_recipe" />
+</navigation>
