@@ -52,9 +52,15 @@ public class FindRecipe extends Fragment {
         }
         //method required to get all of the recipes names
         mRecycleView = view.findViewById(R.id.recyclerView);
-        mAdapter = new RecipeListAdapter(mRecipeList, getContext());
+        mAdapter = new RecipeListAdapter(mRecipeList, getContext(), navController, this);
         mRecycleView.setAdapter(mAdapter);
         mRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
+    }
+
+    public void navigateToDetails(String clickedRecipe) {
+        Bundle bundle = new Bundle();
+        bundle.putString("recipe", clickedRecipe);
+        navController.navigate(R.id.action_findRecipe_to_recipeDetails, bundle);
     }
 }

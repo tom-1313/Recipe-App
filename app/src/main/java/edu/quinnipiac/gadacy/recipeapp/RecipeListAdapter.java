@@ -7,6 +7,7 @@ package edu.quinnipiac.gadacy.recipeapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
@@ -25,12 +27,17 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     private final LinkedList<String> mRecipeList;
     private Context context;
     private Activity activity;
+    private NavController navController = null;
+    private FindRecipe findRecipe;
 
-    public RecipeListAdapter(LinkedList<String> mRecipeList, Context context) {
+    public RecipeListAdapter(LinkedList<String> mRecipeList, Context context, NavController navController, FindRecipe findRecipe) {
         this.mInflater = LayoutInflater.from(context);
         this.mRecipeList = mRecipeList;
         this.context = context;
         this.activity = (Activity) context;
+        this.navController = navController;
+        this.findRecipe = findRecipe;
+
     }
 
     @NonNull
@@ -51,7 +58,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         return mRecipeList.size();
     }
 
-    public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final RecipeListAdapter mAdapter;
         public TextView recipeItemView;
 
@@ -65,9 +72,9 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         @Override
         public void onClick(View v) {
             int mPosition = getLayoutPosition();
-            String element = mRecipeList.get(mPosition);
-            //navigate to RecipeDetails
-            Toast.makeText(activity, "Recipe Details", Toast.LENGTH_SHORT).show();
+            String recipe = mRecipeList.get(mPosition);
+            findRecipe.navigateToDetails(recipe);
+            Toast.makeText(activity, recipe, Toast.LENGTH_SHORT).show();
         }
     }
 }

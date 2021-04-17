@@ -30,5 +30,14 @@
         android:id="@+id/findRecipe"
         android:name="edu.quinnipiac.gadacy.recipeapp.FindRecipe"
         android:label="Find Recipe"
-        tools:layout="@layout/fragment_find_recipe" />
+        tools:layout="@layout/fragment_find_recipe" >
+        <action
+            android:id="@+id/action_findRecipe_to_recipeDetails"
+            app:destination="@id/recipeDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeDetails"
+        android:name="edu.quinnipiac.gadacy.recipeapp.RecipeDetails"
+        android:label="fragment_recipe_details"
+        tools:layout="@layout/fragment_recipe_details" />
 </navigation>
