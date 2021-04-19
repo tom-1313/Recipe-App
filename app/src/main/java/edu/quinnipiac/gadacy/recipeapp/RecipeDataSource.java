@@ -20,6 +20,7 @@ public class RecipeDataSource {
     private SQLiteDatabase database;
     private SQLHelper dbHelper;
     private String[] recipeColumns = {SQLHelper.COLUMN_RECIPE, SQLHelper.COLUMN_INGREDIENTS, SQLHelper.COLUMN_INSTRUCTIONS};
+    private String[] ingredientColumns = {SQLHelper.COLUMN_NAME, SQLHelper.COLUMN_QUANTITY};
 
 
     public RecipeDataSource(Context context) {
@@ -69,6 +70,38 @@ public class RecipeDataSource {
         return recipes;
     }
 
+    public Ingredient createIngredient(String name, String quantity) {
+        ContentValues values = new ContentValues();
+        values.put(SQLHelper.COLUMN_NAME, name);
+        values.put(SQLHelper.COLUMN_QUANTITY, quantity);
+        database.insert(SQLHelper.TABLE_INGREDIENT, null, values);
+        Cursor cursor = database.query(SQLHelper.TABLE_INGREDIENT, ingredientColumns, null, null, null, null, null);
+        cursor.moveToFirst();
+        Ingredient newIngredient = cursorToIngredient(cursor);
+        cursor.close();
+        return newIngredient;
+    }
+
+    public Ingredient cursorToIngredient(Cursor cursor) {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setIngredient(cursor.getString(0));
+        ingredient.setQuantity(cursor.getString(1));
+        return ingredient;
+    }
+
+    public List<Ingredient> getAllIngredients() {
+        List<Ingredient> ingredients = new ArrayList<>();
+        Cursor cursor = database.query(SQLHelper.TABLE_INGREDIENT, null, null, null, null, null, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Ingredient ingredient = cursorToIngredient(cursor);
+            ingredients.add(ingredient);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return ingredients;
+
+    }
     public void close(){
         dbHelper.close();
     }

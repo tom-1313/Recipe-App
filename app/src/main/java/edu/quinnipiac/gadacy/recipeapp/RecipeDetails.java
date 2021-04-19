@@ -1,7 +1,7 @@
 package edu.quinnipiac.gadacy.recipeapp;
 
+import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -22,8 +22,18 @@ import android.widget.Toast;
 public class RecipeDetails extends Fragment {
     private TextView instructions, ingredients, recipe;
     NavController navController = null;
-    private RecipeDataSource dataSource;
     private String clickedRecipe;
+    private CurrentRecipeListener mainActivity;
+
+    public interface CurrentRecipeListener {
+        void currentRecipe(String recipe, String ingredients, String instructions);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mainActivity = (CurrentRecipeListener) context;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,11 +49,10 @@ public class RecipeDetails extends Fragment {
 
         recipe.setText(clickedRecipe);
 
-        //Search the database with the recipe
+        //Search the database for the recipe
         SQLiteOpenHelper recipeDatabaseHelper = new SQLHelper(getActivity());
         try {
             SQLiteDatabase db = recipeDatabaseHelper.getReadableDatabase();
-            System.out.println("clickedRecipe");
             Cursor cursor = db.query(SQLHelper.TABLE_RECIPE,
                     new String[]{SQLHelper.COLUMN_RECIPE, SQLHelper.COLUMN_INGREDIENTS, SQLHelper.COLUMN_INSTRUCTIONS},
                     SQLHelper.COLUMN_RECIPE + " = ? ", new String[]{clickedRecipe},
@@ -53,16 +62,17 @@ public class RecipeDetails extends Fragment {
                 String ingredientsText = cursor.getString(1);
                 String instructionsText = cursor.getString(2);
 
-                System.out.println("THIS iS INGREDIENTSTEXT: " + ingredientsText);
 
                 instructions = view.findViewById(R.id.recipe_details_instructions);
                 ingredients = view.findViewById(R.id.recipe_details_ingredients);
-                ingredients.setText(ingredientsText);
-                instructions.setText(instructionsText);
+                ingredients.setText("Ingredients: " + ingredientsText);
+                instructions.setText("Instructions: " + instructionsText);
             }
+            cursor.close();
         } catch (SQLiteException e) {
             Toast.makeText(getActivity(), "ERROR: DATABASE UNAVAILABLE", Toast.LENGTH_SHORT).show();
         }
+        mainActivity.currentRecipe(recipe.getText().toString(), ingredients.getText().toString(), instructions.getText().toString());
     }
 
     @Override

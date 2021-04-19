@@ -52,7 +52,7 @@ public class HomeScreen extends Fragment implements View.OnClickListener {
                 navController.navigate(R.id.action_homeScreen_to_findRecipe);
                 break;
             case R.id.add_ingredient_image:
-                Toast.makeText(getActivity(), "Add Ingredient", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.action_homeScreen_to_enterIngredient);
                 break;
 
         }

@@ -1,9 +1,4 @@
 package edu.quinnipiac.gadacy.recipeapp;
-/**
- Thomas Gadacy & Sadjell Mamon
- Professor Ruby ElKharboutly
- Recipe App Iteration 1
- **/
 
 import android.os.Bundle;
 
@@ -19,41 +14,33 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
-//This fragment displays the enter EnterRecipe screen
-public class EnterRecipe extends Fragment implements View.OnClickListener {
+public class EnterIngredient extends Fragment implements View.OnClickListener {
+    private EditText name, quantity;
     NavController navController = null;
     private RecipeDataSource dataSource;
-    private EditText recipeName, ingredients, instructions;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         navController = Navigation.findNavController(view);
-
-        view.findViewById(R.id.add_recipe_button).setOnClickListener(this);
-
-        recipeName = view.findViewById(R.id.recipe_name);
-        ingredients = view.findViewById(R.id.recipe_ingredients);
-        instructions = view.findViewById(R.id.recipe_instructions);
-
+        view.findViewById(R.id.add_ingredient_button).setOnClickListener(this);
+        name = view.findViewById(R.id.add_ingredientName_editText);
+        quantity = view.findViewById(R.id.add_quantity_editText);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_enter_recipe, container, false);
+        return inflater.inflate(R.layout.fragment_enter_ingredient, container, false);
     }
 
-    @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
         dataSource = new RecipeDataSource(getActivity());
         dataSource.open();
-        dataSource.createRecipe(recipeName.getText().toString(), ingredients.getText().toString(), instructions.getText().toString());
+        dataSource.createIngredient(name.getText().toString(), quantity.getText().toString());
         dataSource.close();
-
-        Toast.makeText(getActivity(), "Recipe Added!", Toast.LENGTH_SHORT).show();
-        navController.navigate(R.id.action_enterRecipe_to_homeScreen);
+        Toast.makeText(getActivity(), "Ingredient Added!", Toast.LENGTH_SHORT).show();
+        navController.navigate(R.id.action_enterIngredient_to_homeScreen);
     }
 }
