@@ -46,6 +46,7 @@ public class FindRecipe extends Fragment {
         //get the database and add recipes to the linkedlist
         RecipeDataSource dataSource = new RecipeDataSource(getActivity());
         dataSource.open();
+        mRecipeList.clear();
         List<Recipe> recipes = dataSource.getAllRecipes();
         for (int i = 0; i < recipes.size(); i++) {
             mRecipeList.addLast(recipes.get(i).getRecipe());
