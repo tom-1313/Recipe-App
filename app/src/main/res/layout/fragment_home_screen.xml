@@ -11,83 +11,83 @@
         android:id="@+id/welcome_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="66dp"
-        android:layout_marginBottom="26dp"
         android:gravity="center"
         android:text="Welcome to the Recipe App! \nPlease choose an option below!"
-        app:layout_constraintBottom_toTopOf="@+id/add_ingredient"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/add_ingredient_image"
-        android:layout_width="168dp"
-        android:layout_height="240dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="31dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="22dp"
-        android:src="@drawable/ingred"
         android:onClick="onClick"
+        android:src="@drawable/ingred"
         app:layout_constraintBottom_toTopOf="@+id/find_recipe"
         app:layout_constraintEnd_toStartOf="@+id/add_recipe_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_ingredient" />
+        app:layout_constraintTop_toTopOf="@+id/add_ingredient" />
 
     <ImageView
         android:id="@+id/add_recipe_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="84dp"
-        android:src="@drawable/recipe"
+        android:layout_marginBottom="54dp"
         android:onClick="onClick"
-        app:layout_constraintBottom_toTopOf="@+id/find_recipe_image"
+        android:src="@drawable/recipe"
+        app:layout_constraintBottom_toTopOf="@+id/find_recipe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/add_ingredient_image"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/add_recipe" />
 
     <ImageView
         android:id="@+id/find_recipe_image"
-        android:layout_width="334dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="51dp"
-        android:src="@drawable/findrecipe"
+        android:layout_width="0dp"
+        android:layout_height="164dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="81dp"
         android:onClick="onClick"
+        android:src="@drawable/findrecipe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_recipe_image" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/add_ingredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="32dp"
         android:text="Add Ingredient"
-        app:layout_constraintBottom_toTopOf="@+id/add_ingredient_image"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/add_ingredient_image"
         app:layout_constraintTop_toBottomOf="@+id/welcome_textView" />
 
     <TextView
         android:id="@+id/add_recipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="68dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="39dp"
         android:text="Add Recipe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_ingredient" />
+        app:layout_constraintEnd_toEndOf="@+id/welcome_textView"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_textView" />
 
     <TextView
         android:id="@+id/find_recipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="22dp"
         android:text="Find a Recipe"
         app:layout_constraintBottom_toTopOf="@+id/find_recipe_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_ingredient_image" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

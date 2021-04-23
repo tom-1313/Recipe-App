@@ -46,15 +46,22 @@ public class FindRecipe extends Fragment {
         //get the database and add recipes to the linkedlist
         RecipeDataSource dataSource = new RecipeDataSource(getActivity());
         dataSource.open();
+        mRecipeList.clear();
         List<Recipe> recipes = dataSource.getAllRecipes();
         for (int i = 0; i < recipes.size(); i++) {
             mRecipeList.addLast(recipes.get(i).getRecipe());
         }
         //method required to get all of the recipes names
         mRecycleView = view.findViewById(R.id.recyclerView);
-        mAdapter = new RecipeListAdapter(mRecipeList, getContext());
+        mAdapter = new RecipeListAdapter(mRecipeList, getContext(), navController, this);
         mRecycleView.setAdapter(mAdapter);
         mRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
+    }
+
+    public void navigateToDetails(String clickedRecipe) {
+        Bundle bundle = new Bundle();
+        bundle.putString("recipe", clickedRecipe);
+        navController.navigate(R.id.action_findRecipe_to_recipeDetails, bundle);
     }
 }

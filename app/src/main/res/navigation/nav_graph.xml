@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeScreen_to_findRecipe"
             app:destination="@id/findRecipe" />
+        <action
+            android:id="@+id/action_homeScreen_to_enterIngredient"
+            app:destination="@id/enterIngredient" />
     </fragment>
     <fragment
         android:id="@+id/enterRecipe"
@@ -30,5 +33,23 @@
         android:id="@+id/findRecipe"
         android:name="edu.quinnipiac.gadacy.recipeapp.FindRecipe"
         android:label="Find Recipe"
-        tools:layout="@layout/fragment_find_recipe" />
+        tools:layout="@layout/fragment_find_recipe" >
+        <action
+            android:id="@+id/action_findRecipe_to_recipeDetails"
+            app:destination="@id/recipeDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeDetails"
+        android:name="edu.quinnipiac.gadacy.recipeapp.RecipeDetails"
+        android:label="Recipe Details"
+        tools:layout="@layout/fragment_recipe_details" />
+    <fragment
+        android:id="@+id/enterIngredient"
+        android:name="edu.quinnipiac.gadacy.recipeapp.EnterIngredient"
+        android:label="Enter Ingredients"
+        tools:layout="@layout/fragment_enter_ingredient" >
+        <action
+            android:id="@+id/action_enterIngredient_to_homeScreen"
+            app:destination="@id/homeScreen" />
+    </fragment>
 </navigation>

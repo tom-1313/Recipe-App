@@ -7,13 +7,16 @@ package edu.quinnipiac.gadacy.recipeapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,11 +25,15 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 //This is the MainActivity where the container for the fragments is
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecipeDetails.CurrentRecipeListener {
     DrawerLayout drawerLayout;
     NavController navController;
     NavigationView navigationView;
     Toolbar toolbar;
+    public String currentRecipe;
+    public String currentInstructions;
+    public String currentIngredients;
+    private ShareActionProvider provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        provider = (ShareActionProvider) MenuItemCompat.getActionProvider((MenuItem) menu.findItem(R.id.action_share));
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_share:
+                if (currentRecipe == null) {
+                    Toast.makeText(this, "You have not viewed a recipe to share yet!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT, "Recipe: " + currentRecipe + "\nIngredients: " + currentIngredients + "\nInstructions: " + currentInstructions);
+                    provider.setShareIntent(intent);
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -73,5 +99,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void currentRecipe(String recipe, String ingredients, String instructions) {
+        //Share the recipe
+        this.currentRecipe = recipe;
+        this.currentIngredients = ingredients;
+        this.currentInstructions = instructions;
     }
 }

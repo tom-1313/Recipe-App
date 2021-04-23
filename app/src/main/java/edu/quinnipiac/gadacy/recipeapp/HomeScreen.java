@@ -40,7 +40,7 @@ public class HomeScreen extends Fragment implements View.OnClickListener {
         return inflater.inflate(R.layout.fragment_home_screen, container, false);
     }
 
-
+    //When the user clicks an image on the Home Screen it brings them to the specified fragment
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -52,7 +52,7 @@ public class HomeScreen extends Fragment implements View.OnClickListener {
                 navController.navigate(R.id.action_homeScreen_to_findRecipe);
                 break;
             case R.id.add_ingredient_image:
-                Toast.makeText(getActivity(), "Add Ingredient", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.action_homeScreen_to_enterIngredient);
                 break;
 
         }
