@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+//Tests the database for creating new recipes and ingredients
 @RunWith(AndroidJUnit4.class)
 public class RecipeDataSourceTest {
     private SQLiteDatabase db;

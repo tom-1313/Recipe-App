@@ -1,5 +1,6 @@
 package edu.quinnipiac.gadacy.recipeapp;
 
+//This class holds information about an ingredient
 public class Ingredient {
     private String quantity;
     private String ingredient;

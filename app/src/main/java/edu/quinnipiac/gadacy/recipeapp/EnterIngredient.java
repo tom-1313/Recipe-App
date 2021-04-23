@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+//Fragment that allows the user to enter ingredients
 public class EnterIngredient extends Fragment implements View.OnClickListener {
     private EditText name, quantity;
     NavController navController = null;
@@ -35,6 +36,7 @@ public class EnterIngredient extends Fragment implements View.OnClickListener {
         return inflater.inflate(R.layout.fragment_enter_ingredient, container, false);
     }
 
+    //Adds the ingredient to the database after the user clicks the button
     public void onClick(View view) {
         dataSource = new RecipeDataSource(getActivity());
         dataSource.open();

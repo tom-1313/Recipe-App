@@ -35,6 +35,8 @@ public class RecipeDataSource {
         return database;
     }
 
+
+    //Creates and Recipe and adds it to the Recipe table
     public Recipe createRecipe(String recipe, String ingredients, String instructions) {
         ContentValues values = new ContentValues();
         values.put(SQLHelper.COLUMN_RECIPE, recipe);
@@ -49,6 +51,7 @@ public class RecipeDataSource {
 
     }
 
+    //Creates a Recipe object from the recipe table
     private Recipe cursorToRecipe(Cursor cursor) {
         Recipe recipe = new Recipe();
         recipe.setRecipe(cursor.getString(0));
@@ -57,6 +60,7 @@ public class RecipeDataSource {
         return recipe;
     }
 
+    //Returns all the recipes in the recipe table
     public List<Recipe> getAllRecipes() {
         List<Recipe> recipes = new ArrayList<>();
         Cursor cursor = database.query(SQLHelper.TABLE_RECIPE, null, null, null, null, null, null);
@@ -70,6 +74,7 @@ public class RecipeDataSource {
         return recipes;
     }
 
+    //Creates and Ingredient and adds it to the ingredient table
     public Ingredient createIngredient(String name, String quantity) {
         ContentValues values = new ContentValues();
         values.put(SQLHelper.COLUMN_NAME, name);
@@ -82,6 +87,7 @@ public class RecipeDataSource {
         return newIngredient;
     }
 
+    //Creates a Ingredient object from the ingredient table
     public Ingredient cursorToIngredient(Cursor cursor) {
         Ingredient ingredient = new Ingredient();
         ingredient.setIngredient(cursor.getString(0));
@@ -89,6 +95,7 @@ public class RecipeDataSource {
         return ingredient;
     }
 
+    //Returns all the ingredients in the ingredients table
     public List<Ingredient> getAllIngredients() {
         List<Ingredient> ingredients = new ArrayList<>();
         Cursor cursor = database.query(SQLHelper.TABLE_INGREDIENT, null, null, null, null, null, null);

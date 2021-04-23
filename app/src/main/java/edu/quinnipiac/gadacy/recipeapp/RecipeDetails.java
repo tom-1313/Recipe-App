@@ -62,11 +62,11 @@ public class RecipeDetails extends Fragment {
                 String ingredientsText = cursor.getString(1);
                 String instructionsText = cursor.getString(2);
 
-
+                //Set the TextViews in fragment_recipe_details to the proper instructions/ingredients
                 instructions = view.findViewById(R.id.recipe_details_instructions);
                 ingredients = view.findViewById(R.id.recipe_details_ingredients);
-                ingredients.setText("Ingredients: " + ingredientsText);
-                instructions.setText("Instructions: " + instructionsText);
+                ingredients.setText(ingredientsText);
+                instructions.setText(instructionsText);
             }
             cursor.close();
         } catch (SQLiteException e) {

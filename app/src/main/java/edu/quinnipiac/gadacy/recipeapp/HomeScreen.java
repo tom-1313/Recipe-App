@@ -40,7 +40,7 @@ public class HomeScreen extends Fragment implements View.OnClickListener {
         return inflater.inflate(R.layout.fragment_home_screen, container, false);
     }
 
-
+    //When the user clicks an image on the Home Screen it brings them to the specified fragment
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
