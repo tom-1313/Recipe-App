@@ -52,4 +52,22 @@ public class RecipeDataSourceTest {
         Log.i("test ingredient", iList.get(0).getIngredient());
         assertTrue(iList.get(0).getIngredient().equals("Cheese"));
     }
+
+    @Test
+    public void clearIngredients() {
+        ds.createIngredient("Cheese", "1");
+        ds.createIngredient("Apple", "1");
+        ds.clearIngredients();
+        List<Ingredient> iList = ds.getAllIngredients();
+        assertEquals(iList.size(), 0);
+    }
+
+    @Test
+    public void clearRecipes() {
+        ds.createRecipe("Cheese Pizza", "Dough, cheese, tomatoe sauce", "Combine ingredients and put in the oven for 10 minutes");
+        ds.createRecipe("Apple", "Dough, cheese, tomatoe sauce", "Combine ingredients and put in the oven for 10 minutes");
+        ds.clearRecipes();
+        List<Recipe> rList = ds.getAllRecipes();
+        assertEquals(rList.size(), 0);
+    }
 }

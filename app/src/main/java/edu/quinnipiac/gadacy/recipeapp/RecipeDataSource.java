@@ -113,5 +113,13 @@ public class RecipeDataSource {
         dbHelper.close();
     }
 
+    public void clearIngredients() {
+        database.execSQL("DELETE FROM " + SQLHelper.TABLE_INGREDIENT);
+    }
+
+    public void clearRecipes() {
+        database.execSQL("DELETE FROM " + SQLHelper.TABLE_RECIPE);
+    }
+
 }
 
