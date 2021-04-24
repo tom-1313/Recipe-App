@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeScreen_to_enterIngredient"
             app:destination="@id/enterIngredient" />
+        <action
+            android:id="@+id/action_homeScreen_to_about"
+            app:destination="@id/about" />
     </fragment>
     <fragment
         android:id="@+id/enterRecipe"
@@ -52,4 +55,9 @@
             android:id="@+id/action_enterIngredient_to_homeScreen"
             app:destination="@id/homeScreen" />
     </fragment>
+    <fragment
+        android:id="@+id/about"
+        android:name="edu.quinnipiac.gadacy.recipeapp.About"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

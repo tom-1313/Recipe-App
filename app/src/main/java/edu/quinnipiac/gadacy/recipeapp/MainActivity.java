@@ -85,16 +85,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.nav_share:
-                Toast.makeText(this, "This is the share button in navigation!", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.nav_settings:
                 //TODO: navigate to the settings screen
                 Toast.makeText(this, "This is the setting button in navigation!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_about:
-                //TODO: navigate to the about screen
-                Toast.makeText(this, "This is the about button!", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.action_homeScreen_to_about);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
