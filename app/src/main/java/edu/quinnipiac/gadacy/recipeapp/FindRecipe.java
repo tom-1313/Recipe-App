@@ -2,7 +2,7 @@ package edu.quinnipiac.gadacy.recipeapp;
 /**
  * Thomas Gadacy
  * Professor Ruby ElKharboutly
- * Recipe App Iteration 1
+ * Recipe App
  **/
 
 import android.content.Context;
@@ -56,20 +56,19 @@ public class FindRecipe extends Fragment {
             container.removeAllViews();
         }
         View view = inflater.inflate(R.layout.fragment_find_recipe, container, false);
+
         dataSource = new RecipeDataSource(getActivity());
         dataSource.open();
-
         mRecipeList.clear();
         if (mainActivity.switchStatus()) {
-            Toast.makeText(getActivity(), "Filtered", Toast.LENGTH_SHORT).show();
             getFiltered();
         } else {
-            Toast.makeText(getActivity(), "Unfiltered", Toast.LENGTH_SHORT).show();
             getUnfiltered();
         }
         dataSource.close();
+
         mRecycleView = view.findViewById(R.id.recyclerView);
-        mAdapter = new RecipeListAdapter(mRecipeList, getContext(), navController, this);
+        mAdapter = new RecipeListAdapter(mRecipeList, getContext(), this, null);
         mRecycleView.setAdapter(mAdapter);
         mRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;

@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeScreen_to_settings"
             app:destination="@id/settings" />
+        <action
+            android:id="@+id/action_homeScreen_to_listIngredient"
+            app:destination="@id/listIngredient" />
     </fragment>
     <fragment
         android:id="@+id/enterRecipe"
@@ -85,4 +88,9 @@
         android:name="edu.quinnipiac.gadacy.recipeapp.Settings"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/listIngredient"
+        android:name="edu.quinnipiac.gadacy.recipeapp.ListIngredient"
+        android:label="Ingredients"
+        tools:layout="@layout/fragment_list_ingredient" />
 </navigation>

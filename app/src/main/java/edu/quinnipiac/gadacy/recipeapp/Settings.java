@@ -1,4 +1,9 @@
 package edu.quinnipiac.gadacy.recipeapp;
+/**
+ Thomas Gadacy
+ Professor Ruby ElKharboutly
+ Recipe App
+ **/
 
 import android.content.Context;
 import android.os.Bundle;

@@ -1,8 +1,8 @@
 package edu.quinnipiac.gadacy.recipeapp;
 /**
- Thomas Gadacy & Sadjell Mamon
- Professor Ruby ElKharboutly
- Recipe App
+ * Thomas Gadacy
+ * Professor Ruby ElKharboutly
+ * Recipe App
  **/
 
 import androidx.annotation.NonNull;
@@ -96,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_about:
                 navController.navigate(R.id.action_homeScreen_to_about);
                 break;
+            case R.id.nav_user_ingredients:
+                navController.navigate(R.id.action_homeScreen_to_listIngredient);
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -148,9 +151,3 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return switchState;
     }
 }
-
-/****
- * TODO:
- * 1. Implement user story 1
- * 2. Implement user story 4
- */

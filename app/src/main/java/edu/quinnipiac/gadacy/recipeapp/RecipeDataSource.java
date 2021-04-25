@@ -1,8 +1,8 @@
 package edu.quinnipiac.gadacy.recipeapp;
 /**
- Thomas Gadacy & Sadjell Mamon
- Professor Ruby ElKharboutly
- Recipe App Iteration 1
+ * Thomas Gadacy
+ * Professor Ruby ElKharboutly
+ * Recipe App
  **/
 
 import android.content.ContentValues;
@@ -10,6 +10,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,11 +75,6 @@ public class RecipeDataSource {
         return recipes;
     }
 
-    /*
-    grab a recipe
-
-     */
-
     public List<Recipe> getFilteredRecipes() {
         List<Recipe> filteredRecipes = new ArrayList<>();
         List<Recipe> currentRecipes = getAllRecipes();
@@ -97,8 +93,10 @@ public class RecipeDataSource {
         return filteredRecipes;
     }
 
+    //Check to see if the ingredient is in the recipe
     public boolean containsIngredient(String recipe, String ingredient) {
-       return recipe.toLowerCase().indexOf(ingredient.toLowerCase()) != -1;
+        Log.i("Compare", "Comparing ingredients: " + recipe.toLowerCase() + " to " + ingredient.toLowerCase());
+        return recipe.toLowerCase().indexOf(ingredient.toLowerCase()) != -1;
     }
 
     //Creates and Ingredient and adds it to the ingredient table
@@ -136,7 +134,8 @@ public class RecipeDataSource {
         return ingredients;
 
     }
-    public void close(){
+
+    public void close() {
         dbHelper.close();
     }
 

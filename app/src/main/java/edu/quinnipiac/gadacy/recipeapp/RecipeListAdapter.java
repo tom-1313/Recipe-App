@@ -1,8 +1,8 @@
 package edu.quinnipiac.gadacy.recipeapp;
 /**
- Thomas Gadacy & Sadjell Mamon
- Professor Ruby ElKharboutly
- Recipe App Iteration 1
+ * Thomas Gadacy
+ * Professor Ruby ElKharboutly
+ * Recipe App
  **/
 
 import android.app.Activity;
@@ -25,56 +25,74 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
     private final LayoutInflater mInflater;
     private final LinkedList<String> mRecipeList;
-    private Context context;
-    private Activity activity;
-    private NavController navController = null;
+    private final LinkedList<Ingredient> mIngredientList;
     private FindRecipe findRecipe;
 
-    public RecipeListAdapter(LinkedList<String> mRecipeList, Context context, NavController navController, FindRecipe findRecipe) {
+    public RecipeListAdapter(LinkedList<String> mRecipeList, Context context, FindRecipe findRecipe, LinkedList<Ingredient> mIngredientList) {
         this.mInflater = LayoutInflater.from(context);
         this.mRecipeList = mRecipeList;
-        this.context = context;
-        this.activity = (Activity) context;
-        this.navController = navController;
         this.findRecipe = findRecipe;
+        this.mIngredientList = mIngredientList;
 
     }
 
     @NonNull
     @Override
     public RecipeListAdapter.RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemView = mInflater.inflate(R.layout.list_item, parent, false);
+        View mItemView;
+        if (findRecipe == null) {
+            mItemView = mInflater.inflate(R.layout.ingredient_list_item, parent, false);
+        } else {
+            mItemView = mInflater.inflate(R.layout.list_item, parent, false);
+        }
         return new RecipeViewHolder(mItemView, this);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
-        String mCurr = mRecipeList.get(position);
-        holder.recipeItemView.setText(mCurr);
+        if (findRecipe != null) {
+            String mCurr = mRecipeList.get(position);
+            holder.recipeItemView.setText(mCurr);
+        } else {
+            String mCurrIngred = mIngredientList.get(position).getIngredient();
+            String mCurrQuantity = mIngredientList.get(position).getQuantity();
+            holder.ingredientItemView.setText(mCurrIngred);
+            holder.quantityItemView.setText(mCurrQuantity);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mRecipeList.size();
+        if (findRecipe != null) {
+            return mRecipeList.size();
+        } else {
+            return mIngredientList.size();
+        }
     }
 
-    class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final RecipeListAdapter mAdapter;
-        public TextView recipeItemView;
+        public TextView recipeItemView, ingredientItemView, quantityItemView;
 
         public RecipeViewHolder(@NonNull View itemView, RecipeListAdapter recipeListAdapter) {
             super(itemView);
             mAdapter = recipeListAdapter;
-            recipeItemView = itemView.findViewById(R.id.list_item);
+            if (findRecipe != null) {
+                recipeItemView = itemView.findViewById(R.id.list_item);
+            } else {
+                ingredientItemView = itemView.findViewById(R.id.list_ingredient);
+                quantityItemView = itemView.findViewById(R.id.list_quantity);
+            }
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            int mPosition = getLayoutPosition();
-            String recipe = mRecipeList.get(mPosition);
-            findRecipe.navigateToDetails(recipe);
-            Toast.makeText(activity, recipe, Toast.LENGTH_SHORT).show();
+            if (findRecipe != null) {
+                int mPosition = getLayoutPosition();
+                String recipe = mRecipeList.get(mPosition);
+                findRecipe.navigateToDetails(recipe);
+            }
         }
     }
 }

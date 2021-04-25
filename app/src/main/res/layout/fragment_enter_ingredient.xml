@@ -51,6 +51,7 @@
         android:layout_marginTop="99dp"
         android:onClick="onClick"
         android:text="Add"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_quantity_editText" />

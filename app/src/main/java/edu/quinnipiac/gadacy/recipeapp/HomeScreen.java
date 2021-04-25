@@ -1,8 +1,8 @@
 package edu.quinnipiac.gadacy.recipeapp;
 /**
- Thomas Gadacy & Sadjell Mamon
+ Thomas Gadacy
  Professor Ruby ElKharboutly
- Recipe App Iteration 1
+ Recipe App
  **/
 
 import android.os.Bundle;
@@ -48,7 +48,6 @@ public class HomeScreen extends Fragment implements View.OnClickListener {
                 navController.navigate(R.id.action_homeScreen_to_enterRecipe2);
                 break;
             case R.id.find_recipe_image:
-                //TODO: If the recipe table is empty print out a toast
                 navController.navigate(R.id.action_homeScreen_to_findRecipe);
                 break;
             case R.id.add_ingredient_image:
