@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 //This is the MainActivity where the container for the fragments is
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecipeDetails.CurrentRecipeListener, Settings.SwitchListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecipeDetails.CurrentRecipeListener, Settings.SwitchListener, FindRecipe.SwitchStatus {
     DrawerLayout drawerLayout;
     NavController navController;
     NavigationView navigationView;
@@ -142,4 +142,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean getSwitch() {
         return switchState;
     }
+
+    @Override
+    public boolean switchStatus() {
+        return switchState;
+    }
 }
+
+/****
+ * TODO:
+ * 1. Implement user story 1
+ * 2. Implement user story 4
+ */

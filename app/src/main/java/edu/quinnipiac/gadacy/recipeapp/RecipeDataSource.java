@@ -74,6 +74,33 @@ public class RecipeDataSource {
         return recipes;
     }
 
+    /*
+    grab a recipe
+
+     */
+
+    public List<Recipe> getFilteredRecipes() {
+        List<Recipe> filteredRecipes = new ArrayList<>();
+        List<Recipe> currentRecipes = getAllRecipes();
+        List<Ingredient> ingredients = getAllIngredients();
+
+        for (int i = 0; i < currentRecipes.size(); i++) {
+            String recipeIngredients = currentRecipes.get(i).getIngredients();
+            for (int j = 0; j < ingredients.size(); j++) {
+                String userIngredients = ingredients.get(j).getIngredient();
+                if (containsIngredient(recipeIngredients, userIngredients)) {
+                    filteredRecipes.add(currentRecipes.get(i));
+                    break;
+                }
+            }
+        }
+        return filteredRecipes;
+    }
+
+    public boolean containsIngredient(String recipe, String ingredient) {
+       return recipe.toLowerCase().indexOf(ingredient.toLowerCase()) != -1;
+    }
+
     //Creates and Ingredient and adds it to the ingredient table
     public Ingredient createIngredient(String name, String quantity) {
         ContentValues values = new ContentValues();
