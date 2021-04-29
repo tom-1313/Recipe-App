@@ -45,11 +45,12 @@
         app:layout_constraintTop_toBottomOf="@+id/recipe_details_instructions_title" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/recipe_details_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:text="Send"
+        android:onClick="onClick"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

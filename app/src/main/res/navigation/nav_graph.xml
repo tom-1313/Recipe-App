@@ -19,6 +19,15 @@
         <action
             android:id="@+id/action_homeScreen_to_enterIngredient"
             app:destination="@id/enterIngredient" />
+        <action
+            android:id="@+id/action_homeScreen_to_about"
+            app:destination="@id/about" />
+        <action
+            android:id="@+id/action_homeScreen_to_settings"
+            app:destination="@id/settings" />
+        <action
+            android:id="@+id/action_homeScreen_to_listIngredient"
+            app:destination="@id/listIngredient" />
     </fragment>
     <fragment
         android:id="@+id/enterRecipe"
@@ -28,6 +37,9 @@
         <action
             android:id="@+id/action_enterRecipe_to_homeScreen"
             app:destination="@id/homeScreen" />
+        <action
+            android:id="@+id/action_enterRecipe_to_settings"
+            app:destination="@id/settings" />
     </fragment>
     <fragment
         android:id="@+id/findRecipe"
@@ -37,12 +49,19 @@
         <action
             android:id="@+id/action_findRecipe_to_recipeDetails"
             app:destination="@id/recipeDetails" />
+        <action
+            android:id="@+id/action_findRecipe_to_settings"
+            app:destination="@id/settings" />
     </fragment>
     <fragment
         android:id="@+id/recipeDetails"
         android:name="edu.quinnipiac.gadacy.recipeapp.RecipeDetails"
         android:label="Recipe Details"
-        tools:layout="@layout/fragment_recipe_details" />
+        tools:layout="@layout/fragment_recipe_details" >
+        <action
+            android:id="@+id/action_recipeDetails_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
     <fragment
         android:id="@+id/enterIngredient"
         android:name="edu.quinnipiac.gadacy.recipeapp.EnterIngredient"
@@ -51,5 +70,27 @@
         <action
             android:id="@+id/action_enterIngredient_to_homeScreen"
             app:destination="@id/homeScreen" />
+        <action
+            android:id="@+id/action_enterIngredient_to_settings"
+            app:destination="@id/settings" />
     </fragment>
+    <fragment
+        android:id="@+id/about"
+        android:name="edu.quinnipiac.gadacy.recipeapp.About"
+        android:label="About"
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_about_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/settings"
+        android:name="edu.quinnipiac.gadacy.recipeapp.Settings"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/listIngredient"
+        android:name="edu.quinnipiac.gadacy.recipeapp.ListIngredient"
+        android:label="Ingredients"
+        tools:layout="@layout/fragment_list_ingredient" />
 </navigation>

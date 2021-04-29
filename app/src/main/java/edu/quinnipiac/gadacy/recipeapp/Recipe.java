@@ -1,8 +1,10 @@
 package edu.quinnipiac.gadacy.recipeapp;
+
+
 /**
- Thomas Gadacy & Sadjell Mamon
+ Thomas Gadacy
  Professor Ruby ElKharboutly
- Recipe App Iteration 1
+ Recipe App
  **/
 
 //This class holds information about a recipe

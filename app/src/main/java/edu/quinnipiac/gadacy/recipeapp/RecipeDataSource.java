@@ -1,8 +1,8 @@
 package edu.quinnipiac.gadacy.recipeapp;
 /**
- Thomas Gadacy & Sadjell Mamon
- Professor Ruby ElKharboutly
- Recipe App Iteration 1
+ * Thomas Gadacy
+ * Professor Ruby ElKharboutly
+ * Recipe App
  **/
 
 import android.content.ContentValues;
@@ -10,6 +10,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +75,30 @@ public class RecipeDataSource {
         return recipes;
     }
 
+    public List<Recipe> getFilteredRecipes() {
+        List<Recipe> filteredRecipes = new ArrayList<>();
+        List<Recipe> currentRecipes = getAllRecipes();
+        List<Ingredient> ingredients = getAllIngredients();
+
+        for (int i = 0; i < currentRecipes.size(); i++) {
+            String recipeIngredients = currentRecipes.get(i).getIngredients();
+            for (int j = 0; j < ingredients.size(); j++) {
+                String userIngredients = ingredients.get(j).getIngredient();
+                if (containsIngredient(recipeIngredients, userIngredients)) {
+                    filteredRecipes.add(currentRecipes.get(i));
+                    break;
+                }
+            }
+        }
+        return filteredRecipes;
+    }
+
+    //Check to see if the ingredient is in the recipe
+    public boolean containsIngredient(String recipe, String ingredient) {
+        Log.i("Compare", "Comparing ingredients: " + recipe.toLowerCase() + " to " + ingredient.toLowerCase());
+        return recipe.toLowerCase().indexOf(ingredient.toLowerCase()) != -1;
+    }
+
     //Creates and Ingredient and adds it to the ingredient table
     public Ingredient createIngredient(String name, String quantity) {
         ContentValues values = new ContentValues();
@@ -109,8 +134,17 @@ public class RecipeDataSource {
         return ingredients;
 
     }
-    public void close(){
+
+    public void close() {
         dbHelper.close();
+    }
+
+    public void clearIngredients() {
+        database.execSQL("DELETE FROM " + SQLHelper.TABLE_INGREDIENT);
+    }
+
+    public void clearRecipes() {
+        database.execSQL("DELETE FROM " + SQLHelper.TABLE_RECIPE);
     }
 
 }

@@ -1,4 +1,9 @@
 package edu.quinnipiac.gadacy.recipeapp;
+/**
+ Thomas Gadacy
+ Professor Ruby ElKharboutly
+ Recipe App
+ **/
 
 //This class holds information about an ingredient
 public class Ingredient {

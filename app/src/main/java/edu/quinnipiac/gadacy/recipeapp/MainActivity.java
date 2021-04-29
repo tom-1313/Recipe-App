@@ -1,8 +1,8 @@
 package edu.quinnipiac.gadacy.recipeapp;
 /**
- Thomas Gadacy & Sadjell Mamon
- Professor Ruby ElKharboutly
- Recipe App Iteration 1
+ * Thomas Gadacy
+ * Professor Ruby ElKharboutly
+ * Recipe App
  **/
 
 import androidx.annotation.NonNull;
@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 //This is the MainActivity where the container for the fragments is
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecipeDetails.CurrentRecipeListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecipeDetails.CurrentRecipeListener, Settings.SwitchListener, FindRecipe.SwitchStatus {
     DrawerLayout drawerLayout;
     NavController navController;
     NavigationView navigationView;
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public String currentInstructions;
     public String currentIngredients;
     private ShareActionProvider provider;
+    private boolean switchState = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onCreateOptionsMenu(menu);
     }
 
+    //Executes action selected in toolbar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -77,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     provider.setShareIntent(intent);
                 }
                 break;
+            case R.id.action_settings:
+                navigateToSettings(navController.getCurrentDestination().getLabel().toString());
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -85,27 +90,64 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.nav_share:
-                Toast.makeText(this, "This is the share button in navigation!", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.nav_settings:
-                //TODO: navigate to the settings screen
-                Toast.makeText(this, "This is the setting button in navigation!", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.action_homeScreen_to_settings);
                 break;
             case R.id.nav_about:
-                //TODO: navigate to the about screen
-                Toast.makeText(this, "This is the about button!", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.action_homeScreen_to_about);
+                break;
+            case R.id.nav_user_ingredients:
+                navController.navigate(R.id.action_homeScreen_to_listIngredient);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    //Sets the last viewed recipe to be able to share from any fragment
     @Override
     public void currentRecipe(String recipe, String ingredients, String instructions) {
-        //Share the recipe
         this.currentRecipe = recipe;
         this.currentIngredients = ingredients;
         this.currentInstructions = instructions;
+    }
+
+    //Navigates to the settings fragment based on what fragment is currently being displayed
+    public void navigateToSettings(String currentLocation) {
+        switch (currentLocation) {
+            case "Home":
+                navController.navigate(R.id.action_homeScreen_to_settings);
+                break;
+            case "Add Recipe":
+                navController.navigate(R.id.action_enterRecipe_to_settings);
+                break;
+            case "Find Recipe":
+                navController.navigate(R.id.action_findRecipe_to_settings);
+                break;
+            case "Recipe Details":
+                navController.navigate(R.id.action_recipeDetails_to_settings);
+                break;
+            case "Enter Ingredients":
+                navController.navigate(R.id.action_enterIngredient_to_settings);
+                break;
+            case "About":
+                navController.navigate(R.id.action_about_to_settings);
+                break;
+        }
+    }
+
+    @Override
+    public void setSwitch(boolean state) {
+        switchState = state;
+    }
+
+    @Override
+    public boolean getSwitch() {
+        return switchState;
+    }
+
+    @Override
+    public boolean switchStatus() {
+        return switchState;
     }
 }

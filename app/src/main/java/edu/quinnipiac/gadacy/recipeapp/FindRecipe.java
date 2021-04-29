@@ -1,10 +1,11 @@
 package edu.quinnipiac.gadacy.recipeapp;
 /**
-Thomas Gadacy & Sadjell Mamon
- Professor Ruby ElKharboutly
- Recipe App Iteration 1
+ * Thomas Gadacy
+ * Professor Ruby ElKharboutly
+ * Recipe App
  **/
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -27,8 +29,19 @@ public class FindRecipe extends Fragment {
     private RecyclerView mRecycleView;
     private LinkedList<String> mRecipeList = new LinkedList<>();
     private RecipeListAdapter mAdapter;
-
+    private SwitchStatus mainActivity;
+    private RecipeDataSource dataSource;
     NavController navController = null;
+
+    public interface SwitchStatus {
+        boolean switchStatus();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mainActivity = (SwitchStatus) context;
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -43,17 +56,19 @@ public class FindRecipe extends Fragment {
             container.removeAllViews();
         }
         View view = inflater.inflate(R.layout.fragment_find_recipe, container, false);
-        //get the database and add recipes to the linkedlist
-        RecipeDataSource dataSource = new RecipeDataSource(getActivity());
+
+        dataSource = new RecipeDataSource(getActivity());
         dataSource.open();
         mRecipeList.clear();
-        List<Recipe> recipes = dataSource.getAllRecipes();
-        for (int i = 0; i < recipes.size(); i++) {
-            mRecipeList.addLast(recipes.get(i).getRecipe());
+        if (mainActivity.switchStatus()) {
+            getFiltered();
+        } else {
+            getUnfiltered();
         }
-        //method required to get all of the recipes names
+        dataSource.close();
+
         mRecycleView = view.findViewById(R.id.recyclerView);
-        mAdapter = new RecipeListAdapter(mRecipeList, getContext(), navController, this);
+        mAdapter = new RecipeListAdapter(mRecipeList, getContext(), this, null);
         mRecycleView.setAdapter(mAdapter);
         mRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
@@ -63,5 +78,19 @@ public class FindRecipe extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString("recipe", clickedRecipe);
         navController.navigate(R.id.action_findRecipe_to_recipeDetails, bundle);
+    }
+
+    public void getFiltered() {
+        List<Recipe> recipes = dataSource.getFilteredRecipes();
+        for (int i = 0; i < recipes.size(); i++) {
+            mRecipeList.addLast(recipes.get(i).getRecipe());
+        }
+    }
+
+    public void getUnfiltered() {
+        List<Recipe> recipes = dataSource.getAllRecipes();
+        for (int i = 0; i < recipes.size(); i++) {
+            mRecipeList.addLast(recipes.get(i).getRecipe());
+        }
     }
 }
